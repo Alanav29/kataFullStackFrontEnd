@@ -1,0 +1,11 @@
+:root {
+  --navbar-color: rgb(189, 189, 189);
+}
+
+nav {
+  background-color: var(--navbar-color);
+}
+
+.initialMargin {
+  margin-top: 5rem;
+}
