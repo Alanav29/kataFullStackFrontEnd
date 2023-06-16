@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 const Index = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 };

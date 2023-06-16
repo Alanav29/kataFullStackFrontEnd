@@ -6,8 +6,8 @@ import "./styles/appStyle.css";
 function App() {
   return (
     <>
-      <Navbar />
       <Router>
+        <Navbar />
         <Index />
       </Router>
     </>

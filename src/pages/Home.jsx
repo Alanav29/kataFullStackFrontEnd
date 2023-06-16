@@ -1,5 +1,11 @@
+import BannerContent from "../components/BannerContent";
+
 const Home = () => {
-  return <div className="initialMargin">Home</div>;
+  return (
+    <div className="">
+      <BannerContent />
+    </div>
+  );
 };
 
 export default Home;
