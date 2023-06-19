@@ -1,0 +1,43 @@
+.content {
+	max-width: 300px;
+	min-width: 250px;
+}
+
+.content img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.content:hover {
+	max-width: 350px;
+	min-width: 300px;
+}
+
+.bannerImgsArea {
+	overflow-x: scroll;
+}
+
+.bannerImgsArea::-webkit-scrollbar {
+	display: none;
+}
+
+.banner {
+	color: white;
+	background-color: rgba(0, 0, 0);
+}
+
+.btnBannerLeft {
+	height: 100%;
+	color: white;
+}
+
+.btnBannerRight {
+	height: 100%;
+	color: white;
+}
+
+button {
+	background: none !important;
+	border: none !important;
+}

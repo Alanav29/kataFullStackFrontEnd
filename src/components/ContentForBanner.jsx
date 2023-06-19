@@ -1,7 +1,12 @@
-import Serie1 from "../assets/serie1.jpg";
+import "../styles/ContentForBanner.css";
 
-const ContentForBanner = () => {
-  return <img src={Serie1} />;
+// eslint-disable-next-line react/prop-types
+const ContentForBanner = ({ img }) => {
+	return (
+		<div className="content">
+			<img src={img} />
+		</div>
+	);
 };
 
 export default ContentForBanner;

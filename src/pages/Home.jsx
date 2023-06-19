@@ -1,11 +1,14 @@
 import BannerContent from "../components/BannerContent";
+import { useEffect } from "react";
 
 const Home = () => {
-  return (
-    <div className="">
-      <BannerContent />
-    </div>
-  );
+	useEffect();
+
+	return (
+		<div className="">
+			<BannerContent />
+		</div>
+	);
 };
 
 export default Home;
