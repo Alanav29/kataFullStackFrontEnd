@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import setMoviesSlice from "../features/setMoviesSlice";
+import userFeature from "../features/userFeature";
 
 export default configureStore({
 	reducer: {
-		setMovies: setMoviesSlice,
+		userFeature: userFeature,
 	},
 });
