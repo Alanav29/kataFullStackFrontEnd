@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const userFeature = createSlice({
-	name: "User",
+	name: "user",
 	initialState: {
-		value: undefined,
+		value: false,
 	},
 	reducers: {
 		setUser: (state, action) => {
@@ -14,6 +14,6 @@ export const userFeature = createSlice({
 
 export const { setUser } = userFeature.actions;
 
-export const selectUser = (state) => state.setUser.value;
+export const selectUser = (state) => state.user.value;
 
 export default userFeature.reducer;

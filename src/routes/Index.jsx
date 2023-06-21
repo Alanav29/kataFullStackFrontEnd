@@ -1,13 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import DataInstallDb from "../pages/DataInstallDb";
-import AllMovies from "../pages/AllMovies";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import MovieDetail from "../pages/MovieDetail";
 
 const Index = () => {
 	return (
 		<Routes>
 			<Route path="/home" element={<Home />} />
-			<Route path="/peliculas" element={<AllMovies />} />
+			<Route path="/signIn" element={<SignIn />} />
+			<Route path="/signUp" element={<SignUp />} />
+			<Route path="/movie/:idMovie" element={<MovieDetail />} />
 			<Route path="/dataInstall" element={<DataInstallDb />} />
 		</Routes>
 	);

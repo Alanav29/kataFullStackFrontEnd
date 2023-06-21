@@ -2,18 +2,23 @@ import Navbar from "./components/Navbar";
 import Index from "./routes/Index";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./styles/appStyle.css";
-import { Provider as ReduxProvider } from "react-redux";
-import store from "./store/store";
+import { useDispatch } from "react-redux";
+import { setUser } from "./features/userFeature";
 
 function App() {
+	let user = JSON.parse(window.localStorage.getItem("user"));
+	const dispatch = useDispatch();
+
+	if (user) {
+		dispatch(setUser(user));
+	}
+
 	return (
 		<>
-			<ReduxProvider store={store}>
-				<Router>
-					<Navbar />
-					<Index />
-				</Router>
-			</ReduxProvider>
+			<Router>
+				<Navbar />
+				<Index />
+			</Router>
 		</>
 	);
 }

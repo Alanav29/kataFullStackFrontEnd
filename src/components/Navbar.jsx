@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import "../styles/navbar.css";
+import UserOptionsNavbar from "./UserOptionsNavbar";
 
 const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand-lg bg-body-tertiary">
 			<div className="container-fluid">
-				<Link className="navbar-brand" to="/home">
+				<Link className="navbar-brand " to="/home">
 					MovieTime
 				</Link>
 				<button
@@ -19,14 +21,7 @@ const Navbar = () => {
 					<span className="navbar-toggler-icon" />
 				</button>
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-						<li className="nav-item">
-							<Link to="/peliculas" className="nav-link active">
-								Peliculas
-							</Link>
-						</li>
-					</ul>
-					<form className="d-flex me-2" role="search">
+					<form className="d-flex ms-auto me-2" role="search">
 						<input
 							className="form-control me-2"
 							type="search"
@@ -75,9 +70,9 @@ const Navbar = () => {
 							</a>
 							<ul className="dropdown-menu">
 								<li>
-									<a className="dropdown-item" href="#">
-										Logout
-									</a>
+									<div className="dropdown-item" href="#">
+										<UserOptionsNavbar />
+									</div>
 								</li>
 							</ul>
 						</li>

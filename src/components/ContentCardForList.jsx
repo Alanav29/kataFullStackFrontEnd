@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 import "../styles/contentCardForList.css";
+import { Link } from "react-router-dom";
 
 const ContentCardForList = ({ movie }) => {
 	return (
@@ -7,9 +9,9 @@ const ContentCardForList = ({ movie }) => {
 				<img src={movie.poster} className="card-img-top" alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">{movie.title}</h5>
-					<a href="#" className="btn btn-primary">
-						Go somewhere
-					</a>
+					<Link to={`/movie/${movie._id}`} className="btn btn-primary">
+						Movie Detail
+					</Link>
 				</div>
 			</div>
 		</div>

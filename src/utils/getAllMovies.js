@@ -3,20 +3,17 @@ import axios from "axios";
 
 let data = qs.stringify({});
 
-const configGetAllMovies = (token) => {
+const configGetAllMovies = () => {
 	let config = {
 		method: "get",
 		maxBodyLength: Infinity,
 		url: "http://localhost:8000/api/movies",
-		headers: {
-			Authorization: `Bearer ${token}`,
-		},
 		data: data,
 	};
 
 	return config;
 };
 
-const getAllMovies = (token) => axios(configGetAllMovies(token));
+const getAllMovies = () => axios(configGetAllMovies());
 
 export default getAllMovies;

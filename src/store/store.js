@@ -3,6 +3,6 @@ import userFeature from "../features/userFeature";
 
 export default configureStore({
 	reducer: {
-		userFeature: userFeature,
+		user: userFeature,
 	},
 });
