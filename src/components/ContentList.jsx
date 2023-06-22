@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ContentCardForList from "./ContentCardForList";
 
 const ContentList = ({ movies }) => {

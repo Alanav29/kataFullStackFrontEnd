@@ -1,34 +1,37 @@
+/* eslint-disable react/prop-types */
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import postMovie from "../utils/postMovieConfig";
+import putMovie from "../utils/putMovieConfig";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userFeature";
+// import { useNavigate } from "react-router-dom";
 
-const AddMovie = () => {
+const MovieDetailForm = ({ movie }) => {
 	const { handleSubmit, register } = useForm();
-	const navigate = useNavigate();
 	const userSigned = useSelector(selectUser);
+	// const navigate = useNavigate();
 
-	const tryPostMovie = (data) => {
-		const fetchPostMovie = async (data) => {
+	const updateMovie = (data) => {
+		const fetchPutMovie = async () => {
 			try {
-				const result = await postMovie(data, userSigned.token);
+				const result = await putMovie(movie._id, userSigned.token, data);
 
-				if (result.status === 201) {
-					console.log("se agrego la pelicula");
+				if (result.status === 200) {
+					location.reload();
 				}
 			} catch (error) {
-				console.log("Ocurrio un error al agregar la pelicula ", error.message);
+				console.log(
+					"Ocurrio un error al actualizar la pelicula ",
+					error.message
+				);
 			}
 		};
-		fetchPostMovie(data);
-		navigate("/home");
+		fetchPutMovie();
 	};
 
 	return (
-		<div className="container p-4">
-			<h1 className="my-3">Agregar pelicula</h1>
-			<form className="d-block" onSubmit={handleSubmit(tryPostMovie)}>
+		<div className="container">
+			<h1 className="my-3">Actualizar pelicula</h1>
+			<form className="d-block" onSubmit={handleSubmit(updateMovie)}>
 				<label className="form-label" htmlFor="movieNameInput">
 					Titulo
 				</label>
@@ -38,7 +41,6 @@ const AddMovie = () => {
 					type="text"
 					placeholder="Coloca el titulo de la pelicula"
 					id="movieNameInput"
-					required
 				/>
 
 				<label className="form-label" htmlFor="movieOverviewInput">
@@ -50,7 +52,6 @@ const AddMovie = () => {
 					type="text"
 					placeholder="Coloca la sinopsis de la pelicula"
 					id="movieOverviewInput"
-					required
 				/>
 
 				<label className="form-label" htmlFor="movieReleaseDateInput">
@@ -62,7 +63,6 @@ const AddMovie = () => {
 					type="text"
 					placeholder="Coloca la fecha de estreno"
 					id="movieReleaseDateInput"
-					required
 				/>
 
 				<label className="form-label" htmlFor="moviePosterInput">
@@ -74,15 +74,14 @@ const AddMovie = () => {
 					type="text"
 					placeholder="Coloca la URL con el poster de la pelicula"
 					id="moviePosterInput"
-					required
 				/>
 
 				<button className="btn btn-success mt-3" type="submit">
-					Agregar pelicula
+					Actualizar pelicula
 				</button>
 			</form>
 		</div>
 	);
 };
 
-export default AddMovie;
+export default MovieDetailForm;

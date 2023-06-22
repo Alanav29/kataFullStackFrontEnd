@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ContentCardForList = ({ movie }) => {
 	return (
 		<div>
-			<div className="card cardList">
+			<div className="card cardList m-3">
 				<img src={movie.poster} className="card-img-top" alt="..." />
 				<div className="card-body">
 					<h5 className="card-title">{movie.title}</h5>

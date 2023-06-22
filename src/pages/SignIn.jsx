@@ -13,13 +13,20 @@ const SignIn = () => {
 			const result = await signIn(data.email, data.password);
 
 			if (result.status === 200) {
-				dispatch(setUser({ email: data.email, token: result.data.token }));
+				dispatch(
+					setUser({
+						email: data.email,
+						token: result.data.token,
+						name: result.data.name,
+					})
+				);
 
 				window.localStorage.setItem(
 					"user",
 					JSON.stringify({
 						email: data.email,
 						token: result.data.token,
+						name: result.data.name,
 					})
 				);
 
@@ -31,8 +38,8 @@ const SignIn = () => {
 	};
 
 	return (
-		<div className="container">
-			<h1 className="my-4">Sign in</h1>
+		<div className="container p-4">
+			<h1 className="my-4">Iniciar Sesion</h1>
 			<form onSubmit={handleSubmit(trySignIn)}>
 				<div className="mb-3">
 					<label htmlFor="signInEmailInput" className="form-label">

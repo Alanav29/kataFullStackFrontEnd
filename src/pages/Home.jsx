@@ -17,7 +17,7 @@ const Home = () => {
 			}
 		};
 		fetchMoviesData();
-	});
+	}, []);
 
 	return (
 		<div className="">
