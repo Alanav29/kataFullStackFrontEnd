@@ -8,3 +8,11 @@
 .navContainer {
 	justify-content: none !important;
 }
+
+.userOptionsDiv:hover {
+	color: var(--user-options-hover-color);
+}
+
+.dropdown-item {
+	background-color: transparent !important;
+}

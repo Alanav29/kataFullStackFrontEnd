@@ -19,7 +19,7 @@ const SignUp = () => {
 			}
 		};
 		fetchSignUp(data);
-		navigate("/home");
+		navigate("/");
 	};
 
 	return (

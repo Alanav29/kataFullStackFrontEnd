@@ -25,14 +25,14 @@ const Navbar = () => {
 	return (
 		<nav className="navbar navbar-expand bg-body-tertiary">
 			<div className="container navContainer">
-				<Link className="navbar-brand me-auto" to="/home">
+				<Link className="navbar-brand me-auto" to="/">
 					MovieTime
 				</Link>
 				{addMovieDiv}
-				<div className="navbar-nav mb-lg-0">
+				<div className="navbar-nav mb-lg-0 ">
 					<li className="nav-item dropdown">
 						<div
-							className="d-flex align-items-center"
+							className="d-flex align-items-center userOptionsDiv"
 							role="button"
 							data-bs-toggle="dropdown"
 						>

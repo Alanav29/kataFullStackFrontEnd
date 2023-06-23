@@ -18,6 +18,7 @@ const SignIn = () => {
 						email: data.email,
 						token: result.data.token,
 						name: result.data.name,
+						likedMovies: result.data.likedMovies,
 					})
 				);
 
@@ -27,13 +28,14 @@ const SignIn = () => {
 						email: data.email,
 						token: result.data.token,
 						name: result.data.name,
+						likedMovies: result.data.likedMovies,
 					})
 				);
 
-				navigate("/home");
+				navigate("/");
 			}
 		} catch (error) {
-			console.log("Ocurrio un error al traer las peliculas ", error.message);
+			console.log("Ocurrio un error al iniciar sesion ", error.message);
 		}
 	};
 

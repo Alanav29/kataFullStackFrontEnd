@@ -1,7 +1,8 @@
 :root {
-  --navbar-color: rgb(189, 189, 189);
+	--navbar-color: rgb(189, 189, 189);
+	--user-options-hover-color: rgb(46, 176, 209);
 }
 
 nav {
-  background-color: var(--navbar-color);
+	background-color: var(--navbar-color);
 }

@@ -69,10 +69,12 @@ const DataInstallDb = () => {
 	};
 
 	return (
-		<div>
-			<button onClick={traerDatos}>Traer datos</button>
-			<button onClick={installData}>Instalar datos</button>
-		</div>
+		<>
+			<div>
+				<button onClick={traerDatos}>Traer datos</button>
+				<button onClick={installData}>Instalar datos</button>
+			</div>
+		</>
 	);
 };
 

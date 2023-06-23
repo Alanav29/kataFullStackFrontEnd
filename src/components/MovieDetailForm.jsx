@@ -3,12 +3,10 @@ import { useForm } from "react-hook-form";
 import putMovie from "../utils/putMovieConfig";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userFeature";
-// import { useNavigate } from "react-router-dom";
 
 const MovieDetailForm = ({ movie }) => {
 	const { handleSubmit, register } = useForm();
 	const userSigned = useSelector(selectUser);
-	// const navigate = useNavigate();
 
 	const updateMovie = (data) => {
 		const fetchPutMovie = async () => {
@@ -29,7 +27,7 @@ const MovieDetailForm = ({ movie }) => {
 	};
 
 	return (
-		<div className="container">
+		<div className="container mb-4">
 			<h1 className="my-3">Actualizar pelicula</h1>
 			<form className="d-block" onSubmit={handleSubmit(updateMovie)}>
 				<label className="form-label" htmlFor="movieNameInput">

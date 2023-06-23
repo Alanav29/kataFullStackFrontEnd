@@ -2,34 +2,40 @@ import { useEffect, useState } from "react";
 import getMovie from "../utils/getMovieConfig";
 import delMovie from "../utils/delMovie";
 import { selectUser } from "../features/userFeature";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import MovieDetailForm from "../components/MovieDetailForm";
 import putMovie from "../utils/putMovieConfig";
 import "../styles/movieDetail.css";
+import putUserLikedMovie from "../utils/putUserLikedMovieConfig";
+import { setChange } from "../features/changesCounterFeature";
+import putUserUnlikedMovie from "../utils/putUserUnlikedMovieConfig";
 
 const MovieDetail = () => {
 	const { idMovie } = useParams();
 	const [movie, setMovie] = useState({ title: "hola" });
 	const userSigned = useSelector(selectUser);
+	// const changesCounter = useSelector(selectUser);
 	const navigate = useNavigate();
 	let optionSelected;
 	const [divForm, setDivForm] = useState(<></>);
+	const dispatch = useDispatch();
+
+	const fetchMovieData = async () => {
+		try {
+			const result = await getMovie(idMovie);
+
+			if (result.status === 200) {
+				setMovie(result.data);
+			}
+		} catch (error) {
+			console.log("Ocurrio un error al traer la pelicula ", error.message);
+		}
+	};
 
 	useEffect(() => {
-		const fetchMovieData = async () => {
-			try {
-				const result = await getMovie(idMovie);
-
-				if (result.status === 200) {
-					setMovie(result.data);
-				}
-			} catch (error) {
-				console.log("Ocurrio un error al traer las peliculas ", error.message);
-			}
-		};
 		fetchMovieData();
-	}, []);
+	}, [movie]);
 
 	const deleteMovie = () => {
 		const fetchDeleteMovie = async () => {
@@ -44,7 +50,7 @@ const MovieDetail = () => {
 			}
 		};
 		fetchDeleteMovie();
-		navigate("/home");
+		navigate("/");
 	};
 
 	const showForm = () => {
@@ -55,7 +61,7 @@ const MovieDetail = () => {
 		);
 	};
 
-	const updateMovie = () => {
+	const addLikeMovie = () => {
 		const fetchPutMovie = async () => {
 			try {
 				const result = await putMovie(movie._id, userSigned.token, {
@@ -63,7 +69,8 @@ const MovieDetail = () => {
 				});
 
 				if (result.status === 200) {
-					location.reload();
+					dispatch(setChange(1));
+					console.log("se agrego like");
 				}
 			} catch (error) {
 				console.log(
@@ -73,13 +80,88 @@ const MovieDetail = () => {
 			}
 		};
 		fetchPutMovie();
+		const fetchPutLikedMovie = async () => {
+			try {
+				const result = await putUserLikedMovie(
+					userSigned.email,
+					idMovie,
+					userSigned.token
+				);
+
+				if (result.status === 200) {
+					console.log("se actualizo likedMovies del usuario");
+				}
+			} catch (error) {
+				console.log("Ocurrio un error al actualizar usuario", error.message);
+			}
+		};
+		fetchPutLikedMovie();
+		fetchMovieData();
 	};
 
+	let movieIndex;
+	const unlikeMovie = () => {
+		const fetchPutMovie = async () => {
+			try {
+				const result = await putMovie(movie._id, userSigned.token, {
+					likes: -1,
+				});
+
+				if (result.status === 200) {
+					dispatch(setChange(1));
+					console.log("se elimino like");
+				}
+			} catch (error) {
+				console.log(
+					"Ocurrio un error al actualizar la pelicula ",
+					error.message
+				);
+			}
+		};
+		fetchPutMovie();
+
+		const fetchPutUnlikedMovie = async () => {
+			try {
+				const result = await putUserUnlikedMovie(
+					userSigned.email,
+					movieIndex,
+					userSigned.token
+				);
+
+				if (result.status === 200) {
+					console.log("se elimino pelicula de likedMovies");
+				}
+			} catch (error) {
+				console.log("Ocurrio un error al actualizar usuario", error.message);
+			}
+		};
+		fetchPutUnlikedMovie();
+		fetchMovieData();
+	};
+
+	let likeButtonStatus = (
+		<button onClick={addLikeMovie} className="btn btn-primary m-1">
+			Me gusta
+		</button>
+	);
+
+	if (userSigned) {
+		let movieStatus = userSigned.likedMovies.find(
+			(element) => element == idMovie
+		);
+		if (movieStatus == idMovie) {
+			movieIndex = userSigned.likedMovies.indexOf(idMovie);
+
+			likeButtonStatus = (
+				<button onClick={unlikeMovie} className="btn btn-primary m-1">
+					No me gusta
+				</button>
+			);
+		}
+	}
 	const optionForUser = (
 		<>
-			<button onClick={updateMovie} className="btn btn-primary m-1">
-				Me gusta
-			</button>
+			{likeButtonStatus}
 
 			<button onClick={showForm} className="btn btn-primary m-1">
 				Actualizar pelicula

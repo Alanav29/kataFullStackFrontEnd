@@ -22,7 +22,7 @@ const AddMovie = () => {
 			}
 		};
 		fetchPostMovie(data);
-		navigate("/home");
+		navigate("/");
 	};
 
 	return (

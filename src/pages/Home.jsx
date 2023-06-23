@@ -2,8 +2,13 @@
 import ContentList from "../components/ContentList";
 import getAllMovies from "../utils/getAllMovies";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectChangesCounter } from "../features/changesCounterFeature";
+
 const Home = () => {
 	const [movies, setMovies] = useState([]);
+	const changesCounter = useSelector(selectChangesCounter);
+
 	useEffect(() => {
 		const fetchMoviesData = async () => {
 			try {
@@ -17,7 +22,7 @@ const Home = () => {
 			}
 		};
 		fetchMoviesData();
-	}, []);
+	}, [changesCounter]);
 
 	return (
 		<div className="">

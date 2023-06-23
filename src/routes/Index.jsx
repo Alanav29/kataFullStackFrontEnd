@@ -25,7 +25,7 @@ const Index = () => {
 
 	return (
 		<Routes>
-			<Route path="/home" element={<Home />} />
+			<Route path="/" element={<Home />} />
 			{signOptions}
 
 			<Route path="/movie/:idMovie" element={<MovieDetail />} />
