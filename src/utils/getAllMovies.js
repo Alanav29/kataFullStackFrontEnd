@@ -1,10 +1,12 @@
 import axios from "axios";
 
+import { moviesBaseEndpoint } from "./routesForConfigs";
+
 const configGetAllMovies = () => {
 	let config = {
 		method: "get",
 		maxBodyLength: Infinity,
-		url: "http://localhost:8000/api/movies",
+		url: moviesBaseEndpoint,
 	};
 
 	return config;

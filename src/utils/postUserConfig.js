@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import { usersBaseEndpoint } from "./routesForConfigs";
 
 const postUser = (user) => {
 	let data = qs.stringify({
@@ -11,7 +12,7 @@ const postUser = (user) => {
 	let config = {
 		method: "post",
 		maxBodyLength: Infinity,
-		url: "http://localhost:8000/api/users/",
+		url: usersBaseEndpoint,
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded",
 		},

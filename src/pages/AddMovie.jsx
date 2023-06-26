@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import postMovie from "../utils/postMovieConfig";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../features/userFeature";
+import { setChange } from "../features/changesCounterFeature";
 
 const AddMovie = () => {
 	const { handleSubmit, register } = useForm();
 	const navigate = useNavigate();
 	const userSigned = useSelector(selectUser);
+	const dispatch = useDispatch();
 
 	const tryPostMovie = (data) => {
 		const fetchPostMovie = async (data) => {
@@ -15,6 +17,7 @@ const AddMovie = () => {
 				const result = await postMovie(data, userSigned.token);
 
 				if (result.status === 201) {
+					dispatch(setChange(1));
 					console.log("se agrego la pelicula");
 				}
 			} catch (error) {

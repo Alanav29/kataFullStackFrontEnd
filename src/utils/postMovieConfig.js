@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import { moviesBaseEndpoint } from "./routesForConfigs";
 
 const postMovie = (movieData, token) => {
 	let data = qs.stringify({
@@ -12,7 +13,7 @@ const postMovie = (movieData, token) => {
 	let config = {
 		method: "post",
 		maxBodyLength: Infinity,
-		url: "http://localhost:8000/api/movies",
+		url: moviesBaseEndpoint,
 		headers: {
 			Authorization: `Bearer ${token}`,
 			"Content-Type": "application/x-www-form-urlencoded",

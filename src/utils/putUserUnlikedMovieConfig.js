@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import { usersBaseEndpoint } from "./routesForConfigs";
 
 const putUserUnlikedMovie = (userEmail, movieIndex, token) => {
 	let data = qs.stringify({
@@ -10,7 +11,7 @@ const putUserUnlikedMovie = (userEmail, movieIndex, token) => {
 	let config = {
 		method: "put",
 		maxBodyLength: Infinity,
-		url: "http://localhost:8000/api/users/",
+		url: usersBaseEndpoint,
 		headers: {
 			Authorization: `Bearer ${token}`,
 			"Content-Type": "application/x-www-form-urlencoded",

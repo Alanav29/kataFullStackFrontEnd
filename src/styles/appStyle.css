@@ -6,3 +6,7 @@
 nav {
 	background-color: var(--navbar-color);
 }
+
+.btn:active {
+	transform: translate(2px, 2px);
+}

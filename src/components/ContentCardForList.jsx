@@ -10,7 +10,7 @@ const ContentCardForList = ({ movie }) => {
 				<div className="card-body">
 					<h5 className="card-title">{movie.title}</h5>
 					<Link to={`/movie/${movie._id}`} className="btn btn-primary">
-						Movie Detail
+						Detalle de pelicula
 					</Link>
 				</div>
 			</div>

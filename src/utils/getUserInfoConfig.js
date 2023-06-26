@@ -1,10 +1,11 @@
 import axios from "axios";
+import { userInfoEndpoint } from "./routesForConfigs";
 
 const getUserInfo = (token) => {
 	let config = {
 		method: "get",
 		maxBodyLength: Infinity,
-		url: "http://localhost:8000/api/users/me",
+		url: userInfoEndpoint,
 		headers: {
 			Authorization: `Bearer ${token}`,
 		},

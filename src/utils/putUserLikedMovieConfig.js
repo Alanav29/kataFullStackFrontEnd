@@ -1,5 +1,6 @@
 import axios from "axios";
 import qs from "qs";
+import { userUpdateLikedMoviesEndpoint } from "./routesForConfigs";
 
 const putUserLikedMovie = (userEmail, movieId, token) => {
 	let data = qs.stringify({
@@ -10,7 +11,7 @@ const putUserLikedMovie = (userEmail, movieId, token) => {
 	let config = {
 		method: "put",
 		maxBodyLength: Infinity,
-		url: "http://localhost:8000/api/users/likedMovies",
+		url: userUpdateLikedMoviesEndpoint,
 		headers: {
 			Authorization: `Bearer ${token}`,
 			"Content-Type": "application/x-www-form-urlencoded",

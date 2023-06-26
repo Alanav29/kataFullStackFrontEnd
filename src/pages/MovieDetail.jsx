@@ -15,7 +15,6 @@ const MovieDetail = () => {
 	const { idMovie } = useParams();
 	const [movie, setMovie] = useState({ title: "hola" });
 	const userSigned = useSelector(selectUser);
-	// const changesCounter = useSelector(selectUser);
 	const navigate = useNavigate();
 	let optionSelected;
 	const [divForm, setDivForm] = useState(<></>);
@@ -43,6 +42,7 @@ const MovieDetail = () => {
 				const result = await delMovie(userSigned.token, idMovie);
 
 				if (result.status === 200) {
+					dispatch(setChange(1));
 					console.log("se borro la pelicula");
 				}
 			} catch (error) {
@@ -62,6 +62,7 @@ const MovieDetail = () => {
 	};
 
 	const addLikeMovie = () => {
+		// setLikeBtnDisplay("d-none");
 		const fetchPutMovie = async () => {
 			try {
 				const result = await putMovie(movie._id, userSigned.token, {
@@ -101,6 +102,7 @@ const MovieDetail = () => {
 
 	let movieIndex;
 	const unlikeMovie = () => {
+		// setUnlikeBtnDisplay("d-none");
 		const fetchPutMovie = async () => {
 			try {
 				const result = await putMovie(movie._id, userSigned.token, {
@@ -139,11 +141,7 @@ const MovieDetail = () => {
 		fetchMovieData();
 	};
 
-	let likeButtonStatus = (
-		<button onClick={addLikeMovie} className="btn btn-primary m-1">
-			Me gusta
-		</button>
-	);
+	let likeButtonStatus = <></>;
 
 	if (userSigned) {
 		let movieStatus = userSigned.likedMovies.find(
@@ -153,12 +151,19 @@ const MovieDetail = () => {
 			movieIndex = userSigned.likedMovies.indexOf(idMovie);
 
 			likeButtonStatus = (
-				<button onClick={unlikeMovie} className="btn btn-primary m-1">
+				<button onClick={unlikeMovie} className={`btn btn-danger m-1`}>
 					No me gusta
+				</button>
+			);
+		} else {
+			likeButtonStatus = (
+				<button onClick={addLikeMovie} className={`btn btn-success m-1`}>
+					Me gusta
 				</button>
 			);
 		}
 	}
+
 	const optionForUser = (
 		<>
 			{likeButtonStatus}
@@ -167,7 +172,7 @@ const MovieDetail = () => {
 				Actualizar pelicula
 			</button>
 
-			<button onClick={deleteMovie} className="btn btn-primary m-1">
+			<button onClick={deleteMovie} className="btn btn-warning m-1">
 				Borrar pelicula
 			</button>
 		</>
