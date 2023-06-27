@@ -3,11 +3,18 @@ import signIn from "../utils/logInConfig";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/userFeature";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignIn = () => {
 	const { register, handleSubmit } = useForm();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const notify = () => {
+		toast.error("Revisa tus datos", {
+			position: toast.POSITION.TOP_RIGHT,
+		});
+	};
 	const trySignIn = async (data) => {
 		try {
 			const result = await signIn(data.email, data.password);
@@ -35,6 +42,7 @@ const SignIn = () => {
 				navigate("/");
 			}
 		} catch (error) {
+			notify();
 			console.log("Ocurrio un error al iniciar sesion ", error.message);
 		}
 	};
@@ -74,6 +82,7 @@ const SignIn = () => {
 					Iniciar sesion
 				</button>
 			</form>
+			<ToastContainer />
 		</div>
 	);
 };
