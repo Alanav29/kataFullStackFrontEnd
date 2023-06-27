@@ -22,7 +22,7 @@ const MovieDetail = () => {
 
 	const fetchMovieData = async () => {
 		try {
-			const result = await getMovie(idMovie);
+			const result = await getMovie(`${idMovie}`);
 
 			if (result.status === 200) {
 				setMovie(result.data);
