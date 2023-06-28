@@ -1,4 +1,4 @@
-const baseGeneralURL = "https://stormy-scarf-bee.cyclic.app/";
+const baseGeneralURL = "https://fine-gold-caterpillar-wig.cyclic.app/";
 
 // routes for the movies configuration
 
