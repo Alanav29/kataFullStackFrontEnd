@@ -8,7 +8,10 @@ import MovieDetailForm from "../components/MovieDetailForm";
 import putMovie from "../utils/putMovieConfig";
 import "../styles/movieDetail.css";
 import putUserLikedMovie from "../utils/putUserLikedMovieConfig";
-import { setChange } from "../features/changesCounterFeature";
+import {
+	setChange,
+	selectChangesCounter,
+} from "../features/changesCounterFeature";
 import putUserUnlikedMovie from "../utils/putUserUnlikedMovieConfig";
 
 const MovieDetail = () => {
@@ -19,6 +22,7 @@ const MovieDetail = () => {
 	let optionSelected;
 	const [divForm, setDivForm] = useState(<></>);
 	const dispatch = useDispatch();
+	const changesCounter = useSelector(selectChangesCounter);
 
 	const fetchMovieData = async () => {
 		try {
@@ -34,7 +38,7 @@ const MovieDetail = () => {
 
 	useEffect(() => {
 		fetchMovieData();
-	}, [movie]);
+	}, [changesCounter]);
 
 	const deleteMovie = () => {
 		const fetchDeleteMovie = async () => {
