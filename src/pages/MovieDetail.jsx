@@ -106,7 +106,6 @@ const MovieDetail = () => {
 
 	let movieIndex;
 	const unlikeMovie = () => {
-		// setUnlikeBtnDisplay("d-none");
 		const fetchPutMovie = async () => {
 			try {
 				const result = await putMovie(movie._id, userSigned.token, {

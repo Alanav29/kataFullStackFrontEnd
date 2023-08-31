@@ -1,4 +1,4 @@
-const baseGeneralURL = "https://fine-gold-caterpillar-wig.cyclic.app/";
+const baseGeneralURL = "https://vast-gold-ray-sari.cyclic.app/";
 
 // routes for the movies configuration
 
